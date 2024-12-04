@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
+import { TextField, Button, Box, Typography } from '@mui/material';
 
 function WorkoutTemplateForm({ templates, setTemplates }) {
   const [name, setName] = useState('');
   const [exercises, setExercises] = useState('');
-  
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (name && exercises) {
@@ -18,26 +19,38 @@ function WorkoutTemplateForm({ templates, setTemplates }) {
   };
 
   return (
-    <div>
-      <h2>Create Workout Template</h2>
+    <Box mb={4}>
+      <Typography variant="h6" gutterBottom>Create a Workout Template</Typography>
       <form onSubmit={handleSubmit}>
-        <input 
-          type="text" 
-          placeholder="Template Name (e.g., Upper Body)" 
+        <TextField 
+          fullWidth 
+          label="Template Name (e.g., Upper Body)" 
+          variant="outlined" 
+          margin="normal" 
           value={name} 
           onChange={(e) => setName(e.target.value)} 
           required 
         />
-        <textarea 
-          placeholder="Exercises (comma separated, e.g., Bench Press, Pull Ups)" 
+        <TextField 
+          fullWidth 
+          label="Exercises (comma-separated)" 
+          variant="outlined" 
+          margin="normal" 
           value={exercises} 
           onChange={(e) => setExercises(e.target.value)} 
           required 
         />
-        <button type="submit">Add Template</button>
+        <Button 
+          variant="contained" 
+          type="submit" 
+          color="primary" 
+          fullWidth 
+          style={{ marginTop: '10px' }}
+        >
+          Add Template
+        </Button>
       </form>
-      <hr />
-    </div>
+    </Box>
   );
 }
 

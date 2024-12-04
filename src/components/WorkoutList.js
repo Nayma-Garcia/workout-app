@@ -1,4 +1,5 @@
 import React from 'react';
+import { Card, CardContent, Button, Typography, Box } from '@mui/material';
 
 function WorkoutList({ templates, setWorkouts, workouts }) {
   const startWorkout = (template) => {
@@ -15,18 +16,26 @@ function WorkoutList({ templates, setWorkouts, workouts }) {
   };
 
   return (
-    <div>
-      <h2>Workout Templates</h2>
-      {templates.length === 0 && <p>No templates yet. Add one above!</p>}
+    <Box mb={4}>
+      <Typography variant="h6" gutterBottom>Your Workout Templates</Typography>
+      {templates.length === 0 && <Typography>No templates yet. Add one above!</Typography>}
       {templates.map((template) => (
-        <div key={template.name} style={{ marginBottom: '10px' }}>
-          <h3>{template.name}</h3>
-          <p>Exercises: {template.exercises.join(', ')}</p>
-          <button onClick={() => startWorkout(template)}>Start Workout</button>
-        </div>
+        <Card key={template.name} style={{ marginBottom: '10px', backgroundColor: '#3C4A5B' }}>
+          <CardContent>
+            <Typography variant="h6" color="white">{template.name}</Typography>
+            <Typography variant="body2" color="white">Exercises: {template.exercises.join(', ')}</Typography>
+            <Button 
+              variant="contained" 
+              color="secondary" 
+              style={{ marginTop: '10px' }} 
+              onClick={() => startWorkout(template)}
+            >
+              Start Workout
+            </Button>
+          </CardContent>
+        </Card>
       ))}
-      <hr />
-    </div>
+    </Box>
   );
 }
 
